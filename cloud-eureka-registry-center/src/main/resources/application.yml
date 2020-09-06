@@ -1,0 +1,20 @@
+spring:
+  application:
+    # 应用名称：表示注册中心的服务器的唯一标志
+    name: cloud-eureka-registry-center
+
+#端口号：8761
+server:
+  port: 8761
+
+eureka:
+  instance:
+    #hostname: localhost
+    #启用当前实例时的ip地址
+    ip-address: 192.168.150.1
+  client:
+    register-with-eureka: false #自己就是注册中心，不用注册自己
+    fetch-registry: false #要不要去注册中心获取其他服务的地址
+    service-url: # 注册中心唯一的地址，其他微服务将自己注册给注册中心时需要通过此地址查找
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/ #浏览器通过：http://localhost:8761/访问
+      defaultZone: http://${eureka.instance.ip-address}:${server.port}/eureka/ #浏览器通过：http://192.168.150.1:8761/访问
